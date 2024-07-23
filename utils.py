@@ -1,14 +1,17 @@
 #만들고 싶은 기능을 하나씩 추가 
 import random
 import requests
-from bs4 import BeautifulSoup
 from openai import OpenAI
-from langchain_community.document_loaders import WebBaseLoader
-from langchain_text_splitters import RecursiveCharacterTextSplitter
+from bs4 import BeautifulSoup
+
+from langchain_openai import ChatOpenAI
+from langchain import hub
 from langchain_chroma import Chroma
 from langchain_openai import OpenAIEmbeddings
-from langchain_core.runnables import RunnablePassthrough 
-from langchain
+from langchain_community.document_loaders import WebBaseLoader
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_core.runnables import RunnablePassthrough
+from langchain_core.output_parsers import StrOutputParser
 
 
 def random_number():
@@ -42,11 +45,12 @@ def openai(api_key, user_input):
 #1.load document 
 
 def langchain(api_key, user_input):
+    llm = ChatOpenAI(model="gpt-3.5-turbo-0125")
     loader = WebBaseLoader(
-        web_path = ('
+        web_path = (
                  'https://www.aitimes.kr/news/articleView.html?idxno=31272', 
                  'https://developer.apple.com/kr/wwdc24/'
-                 )
+                 ),
     )
 docs = loader.load()
 

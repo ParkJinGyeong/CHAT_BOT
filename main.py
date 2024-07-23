@@ -45,7 +45,7 @@ async def read_root(request: Request):
         #open API 활용
         #text = openai(OPENAI_API_KEY, user_input)
         text= langchain(OPENAI_API_KEY, user_input)
-        req_url = f'{URL}/sendMessage?chat_id={user_id}&text={text}'
-        requests.get(req_url)
+    req_url = f'{URL}/sendMessage?chat_id={user_id}&text={text}'
+    requests.get(req_url)
 
     return{'hello':'world'}
