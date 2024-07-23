@@ -8,6 +8,8 @@ TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
 
 URL = f'https://api.telegram.org/bot{TOKEN}'
 
+OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
+
 method = 'getUpdates'
 
 res = requests.get(f'{URL}/{method}')
